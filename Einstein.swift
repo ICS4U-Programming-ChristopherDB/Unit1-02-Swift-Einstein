@@ -20,14 +20,14 @@ import Foundation
 
 // Enumerator for error messages.
 enum ErrorMessages: Error {
-    case InvalidMassType
+    case invalidMassType
 }
 
 // Function to cast the user's mass.
 func castMass(massStr: String) throws -> Double {
     // Checks if mass is a number.
     guard let mass = Double(massStr) else {
-        throw ErrorMessages.InvalidMassType
+        throw ErrorMessages.invalidMassType
     }
     // Returns casted mass.
     return mass
@@ -35,7 +35,7 @@ func castMass(massStr: String) throws -> Double {
 
 func main() {
     // Sets speed of light.
-    let speedOfLight : Double = 299792458
+    let speedOfLight: Double = 299792458
     // Instantiating number formatter.
     let decimalFormatter = NumberFormatter()
     // Specifies three decimal places for energy.
@@ -53,9 +53,9 @@ func main() {
         let mass = try castMass(massStr: userMass)
         // Calculates the maximum logs that can fit in the truck
         let energy = mass * pow(speedOfLight, 2.0)
-        let formattedEnergy : String = decimalFormatter.string(from: NSNumber(value: energy)) ?? ""
+        let formattedEnergy: String = decimalFormatter.string(from: NSNumber(value: energy)) ?? ""
 
-        if (energy <= 0) {
+        if energy <= 0 {
             print("Your mass must be greater than 0!")
         } else {
             // Tells user how many logs can fit in the truck
@@ -63,7 +63,7 @@ func main() {
         }
 
     // Catches invalid user input
-    } catch ErrorMessages.InvalidMassType {
+    } catch ErrorMessages.invalidMassType {
         print("You must enter a numeric mass")
         // This catch is needed to compile
     } catch {
